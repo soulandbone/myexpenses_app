@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Expenses'),
     );
 
-    // new comment to test what happens in git from the terminal
+    //new comment
+    // second new comment now checcking git diff
   }
 }
 
