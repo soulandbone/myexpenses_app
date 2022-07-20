@@ -6,8 +6,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// another comment just to see the terminal changes
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -20,9 +18,6 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Flutter Expenses'),
     );
-
-    //new comment
-    // second new comment now checcking git diff
   }
 }
 
@@ -48,8 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return TransactionCard();
               })),
-
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
