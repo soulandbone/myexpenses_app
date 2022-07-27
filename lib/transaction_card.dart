@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TransactionCard extends StatelessWidget {
+  double price;
+  String text;
+  String date;
+
+  TransactionCard(
+      {required this.price, required this.text, required this.date});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,18 +20,18 @@ class TransactionCard extends StatelessWidget {
                   border: Border.all(width: 3, color: Colors.purple),
                 ),
                 child: Text(
-                  '\$69.99',
+                  price.toString(),
                   style: TextStyle(fontSize: 26),
                 )),
           ]),
           Column(
             children: [
               Text(
-                'New Zapatos',
+                text,
                 style: TextStyle(fontSize: 18),
               ),
               Text(
-                'Jun 17, 2022',
+                date,
                 style: TextStyle(fontSize: 14),
               ),
             ],

@@ -41,7 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView.builder(
               itemCount: 2,
               itemBuilder: (BuildContext context, int index) {
-                return TransactionCard();
+                return TransactionCard(
+                  price: 68.52,
+                  date: 'October 28th',
+                  text: 'Nike Shoes',
+                );
               })),
     );
   }
