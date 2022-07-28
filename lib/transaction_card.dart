@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TransactionCard extends StatelessWidget {
-  double price;
+  String id;
+  double amount;
   String text;
   String date;
 
   TransactionCard(
-      {required this.price, required this.text, required this.date});
+      {required this.amount,
+      required this.text,
+      required this.date,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class TransactionCard extends StatelessWidget {
                   border: Border.all(width: 3, color: Colors.purple),
                 ),
                 child: Text(
-                  price.toString(),
+                  amount.toString(),
                   style: TextStyle(fontSize: 26),
                 )),
           ]),

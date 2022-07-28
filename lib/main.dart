@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './transaction_card.dart';
+import '/models/transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
+List<Transaction> transactions = [
+  Transaction(
+    id: "abc1",
+    amount: 67.75,
+    text: "Shoes",
+    date: DateTime.now(),
+  ),
+  Transaction(
+    id: 'abc2',
+    amount: 52.55,
+    text: "Skincare",
+    date: DateTime.now(),
+  ),
+  Transaction(
+      id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
+];
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -39,12 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
           child: ListView.builder(
-              itemCount: 2,
+              itemCount: transactions.length,
               itemBuilder: (BuildContext context, int index) {
                 return TransactionCard(
-                  price: 68.52,
-                  date: 'October 28th',
-                  text: 'Nike Shoes',
+                  id: transactions[index].id,
+                  amount: transactions[index].amount,
+                  text: transactions[index].text,
+                  date: transactions[index].date.toString(),
                 );
               })),
     );
