@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -24,22 +25,27 @@ class TransactionCard extends StatelessWidget {
                   border: Border.all(width: 3, color: Colors.purple),
                 ),
                 child: Text(
-                  amount.toString(),
-                  style: TextStyle(fontSize: 26),
+                  '\$${amount.toString()}',
+                  style: TextStyle(
+                    fontSize: 26,
+                  ),
                 )),
           ]),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text,
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                date,
-                style: TextStyle(fontSize: 14),
-              ),
-            ],
+          Container(
+            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  text,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  date,
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+              ],
+            ),
           ),
         ],
       ),
