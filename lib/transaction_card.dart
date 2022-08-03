@@ -29,6 +29,7 @@ class TransactionCard extends StatelessWidget {
                 )),
           ]),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 text,
