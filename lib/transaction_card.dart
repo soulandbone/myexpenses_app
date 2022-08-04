@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class TransactionCard extends StatelessWidget {
   String id;
@@ -22,23 +23,28 @@ class TransactionCard extends StatelessWidget {
             Container(
                 padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  border: Border.all(width: 3, color: Colors.purple),
+                  border: Border.all(
+                    width: 3,
+                    color: Colors.purple,
+                  ),
                 ),
                 child: Text(
                   '\$${amount.toString()}',
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 20,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
                   ),
                 )),
           ]),
           Container(
-            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   text,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   date,
