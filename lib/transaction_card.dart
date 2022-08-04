@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:intl/intl.dart';
 
 class TransactionCard extends StatelessWidget {
   String id;
   double amount;
   String text;
-  String date;
+  DateTime date;
 
   TransactionCard(
       {required this.amount,
@@ -47,7 +48,7 @@ class TransactionCard extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  date,
+                  DateFormat.yMMMd().format(date),
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],

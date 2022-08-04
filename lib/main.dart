@@ -65,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                       id: transactions[index].id,
                       amount: transactions[index].amount,
                       text: transactions[index].text,
-                      date: transactions[index].date.toString(),
+                      date: transactions[index].date,
                     );
                   }))
         ],
