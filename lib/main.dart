@@ -57,6 +57,19 @@ class MyHomePage extends StatelessWidget {
               child: Text('CHART'),
             ),
           ),
+          Card(
+            elevation: 5,
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(labelText: "Title"),
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: "Amount"),
+                ),
+              ],
+            ),
+          ),
           Expanded(
               child: ListView.builder(
                   itemCount: transactions.length,
