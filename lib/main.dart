@@ -53,19 +53,32 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: [
           Container(
+            //
+            width: double.infinity,
             child: Card(
-              child: Text('CHART'),
+              color: Colors.blue,
+              child: Text(
+                'CHART!',
+              ),
             ),
           ),
           Card(
             elevation: 5,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextField(
                   decoration: InputDecoration(labelText: "Title"),
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: "Amount"),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Add Transaction',
+                    style: TextStyle(color: Colors.purple),
+                  ),
                 ),
               ],
             ),
