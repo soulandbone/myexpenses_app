@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './transaction_card.dart';
+import 'package:intl/intl.dart';
 import '/models/transaction.dart';
 
 void main() {
@@ -83,17 +83,49 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-              child: ListView.builder(
-                  itemCount: transactions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TransactionCard(
-                      id: transactions[index].id,
-                      amount: transactions[index].amount,
-                      text: transactions[index].text,
-                      date: transactions[index].date,
-                    );
-                  }))
+          Column(
+            children: transactions.map((tx) {
+              return Card(
+                  elevation: 5,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.purple, width: 3)),
+                            child: Text(
+                              '\$${tx.amount}',
+                              style:
+                                  TextStyle(color: Colors.purple, fontSize: 24),
+                            ),
+                          )
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              tx.text,
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              DateFormat.yMMMd().format(tx.date),
+                              style: TextStyle(color: Colors.grey),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ));
+            }).toList(),
+          )
         ],
       ),
     );
