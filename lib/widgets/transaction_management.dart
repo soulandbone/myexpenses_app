@@ -30,11 +30,23 @@ class _TransactionManagementState extends State<TransactionManagement> {
         id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
   ];
 
+  void addNewTransaction(String txTitle, double txAmount) {
+    Transaction transaction = Transaction(
+        text: txTitle,
+        amount: txAmount,
+        date: DateTime.now(),
+        id: DateTime.now().toString());
+
+    setState(() {
+      _userTransactions.add(transaction);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NewTransaction(),
+        NewTransaction(addNewTransaction),
         TransactionList(_userTransactions),
       ],
     );
