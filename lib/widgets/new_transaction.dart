@@ -7,8 +7,18 @@ class NewTransaction extends StatelessWidget {
   final amountInput = TextEditingController();
 
   final Function addNewTrx;
-
   NewTransaction(this.addNewTrx);
+
+  void submitData() {
+    final savedTitle = titleInput.text;
+    final savedAmount = double.parse(amountInput.text);
+
+    if (savedTitle.isEmpty || savedAmount <= 0) {
+      return;
+    }
+
+    addNewTrx(savedTitle, savedAmount);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +30,16 @@ class NewTransaction extends StatelessWidget {
           TextField(
             decoration: InputDecoration(labelText: "Title"),
             controller: titleInput,
+            onSubmitted: (_) => submitData(),
           ),
           TextField(
             decoration: InputDecoration(labelText: "Amount"),
             controller: amountInput,
+            keyboardType: TextInputType.number,
+            onSubmitted: (_) => submitData(),
           ),
           TextButton(
-            onPressed: () {
-              addNewTrx(titleInput.text, double.parse(amountInput.text));
-            },
+            onPressed: submitData,
             child: Text(
               'Add Transaction',
               style: TextStyle(color: Colors.purple),
