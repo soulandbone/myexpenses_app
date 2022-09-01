@@ -18,6 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
+        appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(fontFamily: 'OpenSans', fontSize: 20)),
+        textTheme: const TextTheme(
+          headline6: TextStyle(
+              fontFamily: 'Quicksand', fontSize: 18, color: Colors.black),
+        ),
       ),
       home: const MyHomePage(title: 'Personal Expenses'),
     );
@@ -78,13 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               onPressed: () => _showNewTransactionModal(context),
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
         title: Text(widget.title),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showNewTransactionModal(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
@@ -92,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             //
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
               child: Text(
                 'CHART!',
