@@ -24,7 +24,7 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.addNewTrx(savedTitle, savedAmount);
-    Navigator.pop(context);
+    Navigator.pop(context); //Navigator.of(context).pop
   }
 
   @override
@@ -49,7 +49,7 @@ class _NewTransactionState extends State<NewTransaction> {
             onPressed: submitData,
             child: Text(
               'Add Transaction',
-              style: TextStyle(color: Colors.purple),
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),
         ],
