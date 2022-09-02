@@ -41,20 +41,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: "abc1",
-      amount: 67.75,
-      text: "Shoes",
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 'abc2',
-      amount: 52.55,
-      text: "Clothing",
-      date: DateTime.now(),
-    ),
-    Transaction(
-        id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
+    // Transaction(
+    //   id: "abc1",
+    //   amount: 67.75,
+    //   text: "Shoes",
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 'abc2',
+    //   amount: 52.55,
+    //   text: "Clothing",
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //     id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -105,7 +105,18 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          TransactionList(_userTransactions)
+          SizedBox(
+            height: 25,
+          ),
+          _userTransactions.isEmpty
+              ? Container(
+                  height: 200,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.contain,
+                  ),
+                )
+              : TransactionList(_userTransactions),
         ],
       ),
     );
