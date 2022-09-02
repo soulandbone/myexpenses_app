@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import 'models/transaction.dart';
@@ -41,20 +42,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: "abc1",
-    //   amount: 67.75,
-    //   text: "Shoes",
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 'abc2',
-    //   amount: 52.55,
-    //   text: "Clothing",
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //     id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
+    Transaction(
+      id: "abc1",
+      amount: 67.75,
+      text: "Shoes",
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 'abc2',
+      amount: 52.55,
+      text: "Clothing",
+      date: DateTime.now(),
+    ),
+    Transaction(
+        id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -77,6 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where(
+            (tx) => tx.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,16 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          Container(
-            //
-            width: double.infinity,
-            child: const Card(
-              color: Colors.blue,
-              child: Text(
-                'CHART!',
-              ),
-            ),
-          ),
+          Chart(_recentTransactions),
           SizedBox(
             height: 25,
           ),
