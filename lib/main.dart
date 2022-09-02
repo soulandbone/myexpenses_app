@@ -108,15 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 25,
           ),
-          _userTransactions.isEmpty
-              ? Container(
-                  height: 200,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.contain,
-                  ),
-                )
-              : TransactionList(_userTransactions),
+          TransactionList(_userTransactions),
         ],
       ),
     );

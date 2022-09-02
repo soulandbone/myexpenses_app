@@ -14,49 +14,69 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      child: ListView.builder(
-          itemCount: transactions.length,
-          itemBuilder: (context, index) {
-            return Card(
-                elevation: 5,
-                child: Row(
-                  children: [
-                    Column(
+      child: transactions.isEmpty
+          ? Column(
+              children: [
+                Text(
+                  "You haven't added any transactions yet",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Container(
+                  height: 300,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.contain,
+                  ),
+                )
+              ],
+            )
+          : ListView.builder(
+              itemCount: transactions.length,
+              itemBuilder: (context, index) {
+                return Card(
+                    elevation: 5,
+                    child: Row(
                       children: [
+                        Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 3)),
+                              child: Text(
+                                '\$${transactions[index].amount.toStringAsFixed(2)}',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 24),
+                              ),
+                            )
+                          ],
+                        ),
                         Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 3)),
-                          child: Text(
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 24),
+                          margin: const EdgeInsets.only(left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                transactions[index].text,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              Text(
+                                DateFormat.yMMMd()
+                                    .format(transactions[index].date),
+                                style: const TextStyle(color: Colors.grey),
+                              )
+                            ],
                           ),
-                        )
+                        ),
                       ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            transactions[index].text,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          Text(
-                            DateFormat.yMMMd().format(transactions[index].date),
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ));
-          }),
+                    ));
+              }),
     );
   }
 }
