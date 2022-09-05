@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_expenses_app/widgets/chart_bar.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
@@ -22,13 +23,25 @@ class Chart extends StatelessWidget {
         }
       }
 
-      return {'Day': DateFormat.E().format(weekDay), 'Amount': totalAmount};
+      return {
+        'Day': DateFormat.E().format(weekDay).substring(0, 1),
+        'Amount': totalAmount
+      };
     });
   }
 
   @override
   Widget build(BuildContext context) {
     print(lastWeekTransactions); //print in the build method
-    return Container();
+    return Card(
+      elevation: 6,
+      margin: EdgeInsets.all(5),
+      child: Row(
+        children: lastWeekTransactions.map((item) {
+          return ChartBar('${item['Day']}', (item['Amount']) as double, 0.5);
+          // return Text('${data['Day']} : ${data['Amount']}');
+        }).toList(),
+      ),
+    );
   }
 }

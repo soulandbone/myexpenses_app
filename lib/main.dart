@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Chart(_recentTransactions),
           SizedBox(
-            height: 25,
+            height: 5,
           ),
           TransactionList(_userTransactions),
         ],
