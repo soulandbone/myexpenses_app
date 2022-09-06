@@ -37,45 +37,27 @@ class TransactionList extends StatelessWidget {
               itemCount: transactions.length,
               itemBuilder: (context, index) {
                 return Card(
-                    elevation: 5,
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Theme.of(context).primaryColor,
-                                      width: 3)),
-                              child: Text(
-                                '\$${transactions[index].amount.toStringAsFixed(2)}',
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 24),
-                              ),
-                            )
-                          ],
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                transactions[index].text,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                              Text(
-                                DateFormat.yMMMd()
-                                    .format(transactions[index].date),
-                                style: const TextStyle(color: Colors.grey),
-                              )
-                            ],
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  elevation: 6,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: FittedBox(
+                          child: Text(
+                            '\$${transactions[index].amount.toStringAsFixed(2)}',
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
-                      ],
-                    ));
+                      ),
+                    ),
+                    title: Text(transactions[index].text),
+                    subtitle: Text(
+                        DateFormat.yMMMMd().format(transactions[index].date)),
+                  ),
+                );
               }),
     );
   }

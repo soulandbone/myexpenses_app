@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           headline6: TextStyle(
               fontFamily: 'Quicksand', fontSize: 18, color: Colors.black),
+          headline1: TextStyle(
+              fontFamily: 'Quicksand', fontSize: 14, color: Colors.white),
         ),
       ),
       home: const MyHomePage(title: 'Personal Expenses'),
