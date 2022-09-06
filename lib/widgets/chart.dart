@@ -30,6 +30,12 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get totalSpending {
+    return lastWeekTransactions.fold(0.0, (sum, element) {
+      return sum + (element['Amount'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print(lastWeekTransactions); //print in the build method
@@ -38,8 +44,13 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(5),
       child: Row(
         children: lastWeekTransactions.map((item) {
-          return ChartBar('${item['Day']}', (item['Amount']) as double, 0.5);
-          // return Text('${data['Day']} : ${data['Amount']}');
+          return ChartBar(
+            '${item['Day']}',
+            (item['Amount'] as double),
+            totalSpending == 0
+                ? 0.0
+                : (item['Amount'] as double) / totalSpending,
+          );
         }).toList(),
       ),
     );
