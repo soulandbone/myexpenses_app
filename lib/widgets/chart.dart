@@ -42,16 +42,23 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(5),
-      child: Row(
-        children: lastWeekTransactions.map((item) {
-          return ChartBar(
-            '${item['Day']}',
-            (item['Amount'] as double),
-            totalSpending == 0
-                ? 0.0
-                : (item['Amount'] as double) / totalSpending,
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: lastWeekTransactions.map((item) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                '${item['Day']}',
+                (item['Amount'] as double),
+                totalSpending == 0
+                    ? 0.0
+                    : (item['Amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
