@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(fontFamily: 'OpenSans', fontSize: 20)),
         textTheme: const TextTheme(
-          headline6: TextStyle(
-              fontFamily: 'Quicksand', fontSize: 18, color: Colors.black),
-          headline1: TextStyle(
-              fontFamily: 'Quicksand', fontSize: 14, color: Colors.white),
-        ),
+            headline6: TextStyle(
+                fontFamily: 'Quicksand', fontSize: 18, color: Colors.black),
+            headline1: TextStyle(
+                fontFamily: 'Quicksand', fontSize: 14, color: Colors.white),
+            button: TextStyle(color: Colors.white)),
       ),
       home: const MyHomePage(title: 'Personal Expenses'),
     );
