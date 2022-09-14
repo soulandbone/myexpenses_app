@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 class NewTransaction extends StatefulWidget {
   // NewTransaction({Key? key}) : super(key: key);
 
@@ -11,13 +13,13 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleInput = TextEditingController();
-
-  final amountInput = TextEditingController();
+  final _titleInput = TextEditingController();
+  final _amountInput = TextEditingController();
+  var _selectedDate = DateTime.now();
 
   void _submitData() {
-    final savedTitle = titleInput.text;
-    final savedAmount = double.parse(amountInput.text);
+    final savedTitle = _titleInput.text;
+    final savedAmount = double.parse(_amountInput.text);
 
     if (savedTitle.isEmpty || savedAmount <= 0) {
       return;
@@ -25,6 +27,19 @@ class _NewTransactionState extends State<NewTransaction> {
 
     widget.addNewTrx(savedTitle, savedAmount);
     Navigator.pop(context); //Navigator.of(context).pop
+  }
+
+  void _revealDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2022),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      setState(() {
+        _selectedDate = pickedDate!;
+      });
+    });
   }
 
   @override
@@ -38,12 +53,12 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               decoration: InputDecoration(labelText: "Title"),
-              controller: titleInput,
+              controller: _titleInput,
               onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: "Amount"),
-              controller: amountInput,
+              controller: _amountInput,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
             ),
@@ -51,8 +66,9 @@ class _NewTransactionState extends State<NewTransaction> {
               height: 70,
               child: Row(
                 children: [
-                  Text('No date CHOSEN!'),
-                  TextButton(onPressed: () {}, child: Text('Choose date'))
+                  Text(DateFormat.yMMMd().format(_selectedDate)),
+                  TextButton(
+                      onPressed: _revealDatePicker, child: Text('Choose date'))
                 ],
               ),
             ),
