@@ -95,15 +95,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      actions: [
+        IconButton(
+            onPressed: () => _showNewTransactionModal(context),
+            icon: const Icon(Icons.add))
+      ],
+      title: Text(widget.title),
+    );
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () => _showNewTransactionModal(context),
-              icon: const Icon(Icons.add))
-        ],
-        title: Text(widget.title),
-      ),
+      appBar: appBar,
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showNewTransactionModal(context),
         child: const Icon(Icons.add),
@@ -111,11 +112,23 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          Chart(_recentTransactions),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      5 -
+                      MediaQuery.of(context).padding.top) *
+                  0.3,
+              child: Chart(_recentTransactions)),
           SizedBox(
             height: 5,
           ),
-          TransactionList(_userTransactions, _deleteTransaction),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      5 -
+                      MediaQuery.of(context).padding.top) *
+                  0.7,
+              child: TransactionList(_userTransactions, _deleteTransaction)),
         ],
       ),
     );
