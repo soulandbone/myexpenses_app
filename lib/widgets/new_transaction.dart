@@ -18,14 +18,18 @@ class _NewTransactionState extends State<NewTransaction> {
   var _selectedDate = DateTime.now();
 
   void _submitData() {
+    if (_amountInput.text.isEmpty) {
+      return;
+    }
     final savedTitle = _titleInput.text;
     final savedAmount = double.parse(_amountInput.text);
+    final submittedDate = _selectedDate;
 
     if (savedTitle.isEmpty || savedAmount <= 0) {
       return;
     }
 
-    widget.addNewTrx(savedTitle, savedAmount);
+    widget.addNewTrx(savedTitle, savedAmount, submittedDate);
     Navigator.pop(context); //Navigator.of(context).pop
   }
 
@@ -66,7 +70,10 @@ class _NewTransactionState extends State<NewTransaction> {
               height: 70,
               child: Row(
                 children: [
-                  Text(DateFormat.yMMMd().format(_selectedDate)),
+                  Expanded(
+                    child: Text(
+                        'Picked date: ${DateFormat.yMMMd().format(_selectedDate)}'),
+                  ),
                   TextButton(
                       onPressed: _revealDatePicker, child: Text('Choose date'))
                 ],
