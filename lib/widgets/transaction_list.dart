@@ -7,8 +7,9 @@ class TransactionList extends StatelessWidget {
   //TransactionList({Key? key}) : super(key: key);
 
   final List<Transaction> transactions;
+  final Function deleteTrx;
 
-  TransactionList(this.transactions);
+  TransactionList(this.transactions, this.deleteTrx);
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,13 @@ class TransactionList extends StatelessWidget {
                     title: Text(transactions[index].text),
                     subtitle: Text(
                         DateFormat.yMMMMd().format(transactions[index].date)),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).errorColor,
+                      ),
+                      onPressed: () => deleteTrx(transactions[index].id),
+                    ),
                   ),
                 );
               }),

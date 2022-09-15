@@ -72,6 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((trx) => id == trx.id);
+    });
+  }
+
   void _showNewTransactionModal(BuildContext cntxt) {
     showModalBottomSheet(
         context: cntxt,
@@ -109,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 5,
           ),
-          TransactionList(_userTransactions),
+          TransactionList(_userTransactions, _deleteTransaction),
         ],
       ),
     );
