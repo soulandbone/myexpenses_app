@@ -66,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
         id: 'abc3', amount: 81.99, text: 'PS5 controller', date: DateTime.now())
   ];
 
+  var _chartOn = true;
+
   void _addNewTransaction(String txTitle, double txAmount, DateTime txDate) {
     Transaction transaction = Transaction(
         text: txTitle,
@@ -101,6 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       actions: [
         IconButton(
@@ -109,6 +114,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       title: Text(widget.title),
     );
+
+    final deviceHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        5 -
+        MediaQuery.of(context).padding.top;
+
+    final switchWidgetRow =
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Text('Show Chart'),
+      Switch(
+          value: _chartOn,
+          onChanged: (value) {
+            setState(() {
+              _chartOn = value;
+            });
+          })
+    ]);
     return Scaffold(
       appBar: appBar,
       floatingActionButton: FloatingActionButton(
@@ -118,23 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      5 -
-                      MediaQuery.of(context).padding.top) *
-                  0.2,
-              child: Chart(_recentTransactions)),
+          if (_isLandscape) switchWidgetRow,
+          if (_chartOn)
+            Container(
+                height: _isLandscape ? deviceHeight * 0.5 : deviceHeight * 0.2,
+                child: Chart(_recentTransactions)),
           SizedBox(
             height: 5,
           ),
-          Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      5 -
-                      MediaQuery.of(context).padding.top) *
-                  0.8,
-              child: TransactionList(_userTransactions, _deleteTransaction)),
+          if (!_chartOn || !_isLandscape)
+            Container(
+                height: deviceHeight * 0.8,
+                child: TransactionList(_userTransactions, _deleteTransaction)),
         ],
       ),
     );
